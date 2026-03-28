@@ -1,26 +1,23 @@
 {
   "name": "movie-reservation-system",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "roadmap.sh project",
+  "homepage": "https://github.com/jiehoonn/movie-reservation-system#readme",
+  "bugs": {
+    "url": "https://github.com/jiehoonn/movie-reservation-system/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiehoonn/movie-reservation-system.git"
+  },
+  "license": "ISC",
+  "author": "Jiehoon Lee",
+  "type": "commonjs",
+  "main": "server.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "next": "16.2.1",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.1",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "express": "^5.2.1"
   }
 }
