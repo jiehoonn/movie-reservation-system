@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           Int           @id @default(autoincrement())
+  full_name    String
+  username     String        @unique
+  email        String        @unique
+  password     String
+  role         Role          @default(USER)
+  created_at   DateTime      @default(now())
+  reservations Reservation[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Movie {
+  id          Int        @id @default(autoincrement())
+  title       String
+  description String
+  genre       String
+  poster      String
+  capacity    Int
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  showtimes   Showtime[]
+}
+
+model Showtime {
+  id              Int            @id @default(autoincrement())
+  movie_id        Int
+  theater_id      Int
+  start_time      DateTime
+  movie_length    Int
+  price           Decimal        @db.Decimal(10, 2)
+  seats_available Int
+  status          ShowtimeStatus @default(ACTIVE)
+  created_at      DateTime       @default(now())
+  movie           Movie          @relation(fields: [movie_id], references: [id])
+  reservations    Reservation[]
+}
+
+enum ShowtimeStatus {
+  ACTIVE
+  EXPIRED
+}
+
+model Reservation {
+  id          Int      @id @default(autoincrement())
+  showtime_id Int
+  user_id     Int
+  seat_num    String
+  created_at  DateTime @default(now())
+  showtime    Showtime @relation(fields: [showtime_id], references: [id])
+  user        User     @relation(fields: [user_id], references: [id])
+}
